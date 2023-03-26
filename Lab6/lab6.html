@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mark Validation and Result</title>
+	<script>
+		function validateTxt() {
+			var firstName = document.getElementById("firstName").value;
+			var lastName = document.getElementById("lastName").value;
+			var mark1 = document.getElementById("mark1").value;
+			var mark2 = document.getElementById("mark2").value;
+			var mark3 = document.getElementById("mark3").value;
+
+			var errorFirstName = document.getElementById("errorFirstName");
+			var errorLastName = document.getElementById("errorLastName");
+			var errorMark1 = document.getElementById("errorMark1");
+			var errorMark2 = document.getElementById("errorMark2");
+			var errorMark3 = document.getElementById("errorMark3");
+
+			var hasError = false;
+
+			if (firstName.trim() === "") {
+				errorFirstName.innerHTML = "First Name is required";
+				hasError = true;
+			} else {
+				errorFirstName.innerHTML = "";
+			}
+
+			if (lastName.trim() === "") {
+				errorLastName.innerHTML = "Last Name is required";
+				hasError = true;
+			} else {
+				errorLastName.innerHTML = "";
+			}
+
+			if (mark1.trim() === "" || isNaN(mark1) || parseInt(mark1) < 0 || parseInt(mark1) > 100) {
+				errorMark1.innerHTML = "Mark 1 should be a number between 0 and 100";
+				hasError = true;
+			} else {
+				errorMark1.innerHTML = "";
+			}
+
+			if (mark2.trim() === "" || isNaN(mark2) || parseInt(mark2) < 0 || parseInt(mark2) > 100) {
+				errorMark2.innerHTML = "Mark 2 should be a number between 0 and 100";
+				hasError = true;
+			} else {
+				errorMark2.innerHTML = "";
+			}
+
+			if (mark3.trim() === "" || isNaN(mark3) || parseInt(mark3) < 0 || parseInt(mark3) > 100) {
+				errorMark3.innerHTML = "Mark 3 should be a number between 0 and 100";
+				hasError = true;
+			} else {
+				errorMark3.innerHTML = "";
+			}
+
+			if (!hasError) {
+				document.getElementById("printResultBtn").disabled = false;
+			}
+		}
+
+		function printResult() {
+			var firstName = document.getElementById("firstName").value;
+			var lastName = document.getElementById("lastName").value;
+			var mark1 = parseInt(document.getElementById("mark1").value);
+			var mark2 = parseInt(document.getElementById("mark2").value);
+			var mark3 = parseInt(document.getElementById("mark3").value);
+			var average = (mark1 + mark2 + mark3) / 3;
+			var result = document.getElementById("result");
+
+			if (average >= 90) {
+				result.innerHTML = firstName + " " + lastName + " - Average: " + average.toFixed(2) + " - Awesome";
+			} else if (average >= 80) {
+				result.innerHTML = firstName + " " + lastName + " - Average: " + average.toFixed(2) + " - Very Good";
+			} else if (average >= 50) {
+				result.innerHTML = firstName + " " + lastName + " - Average: " + average.toFixed(2) + " - OK";
+			} else {
+				result.innerHTML = firstName + " " + lastName + " - Average: " + average.toFixed(2) + " - Fail";
+			}
+
+			document.getElementById("printResultBtn").disabled = true;
+		}
+	</script>
+</head>
+</html>
